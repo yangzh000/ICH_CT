@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hemorrhage-reproduction"
+version = "0.1.0"
+requires-python = ">=3.11,<3.12"
+dependencies = ["numpy>=1.26,<2", "scipy>=1.11,<1.17", "pandas>=2.2,<3", "scikit-learn>=1.7,<1.9", "SimpleITK>=2.4,<2.6", "pyradiomics==3.0.1", "matplotlib>=3.9,<3.11", "torch>=2.6,<2.9", "monai>=1.5,<1.6", "einops>=0.8,<0.9", "shap>=0.46,<0.49", "joblib>=1.4,<1.6"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+hemorrhage = "hemorrhage.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["hemorrhage*"]
+
+[tool.setuptools.data-files]
+"share/hemorrhage/matlab" = ["matlab/*.m"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

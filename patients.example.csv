@@ -1,0 +1,5 @@
+patient_id,center,image,mask,label
+A001,A,data/A001_ncct.nii.gz,data/A001_roi.nii.gz,1
+A002,A,data/A002_ncct.nii.gz,data/A002_roi.nii.gz,0
+B001,B,data/B001_ncct.nii.gz,data/B001_roi.nii.gz,1
+C001,C,data/C001_ncct.nii.gz,data/C001_roi.nii.gz,0

@@ -1,0 +1,109 @@
+{
+  "seed": 20260911,
+  "cohort": {
+    "development_center": "A",
+    "external_centers": ["B", "C"],
+    "expected_development": 299,
+    "expected_external": 125
+  },
+  "preprocessing": {
+    "spacing": [1.0, 1.0, 1.0],
+    "interpolator": "linear",
+    "normalization": "zscore_image",
+    "clip_hu": null,
+    "outside_value": -1024.0
+  },
+  "augmentation": {
+    "copies": 1,
+    "rotation_degrees": 10.0,
+    "scale_range": [0.9, 1.1],
+    "crop_margin_range": [0, 5]
+  },
+  "radiomics": {
+    "bin_width": null,
+    "bin_count": 32,
+    "feature_classes": {
+      "shape": [],
+      "firstorder": [],
+      "glcm": [],
+      "glrlm": [],
+      "glszm": [],
+      "gldm": [],
+      "ngtdm": []
+    }
+  },
+  "svm": {
+    "C": 1.0,
+    "gamma": "scale",
+    "max_features": null
+  },
+  "cv": {
+    "outer_folds": 5,
+    "outer_repeats": 5,
+    "selection_folds": 5,
+    "selection_repeats": 1,
+    "calibration_folds": 5,
+    "crossfit_folds": 5,
+    "depth_folds": 5,
+    "threshold_folds": 5
+  },
+  "habitat": {
+    "patch_size": 20,
+    "stride": 1,
+    "clusters": 10,
+    "max_depth": 3,
+    "patch_batch_size": 128,
+    "kmeans_n_init": 10,
+    "later_feature_family": "texture",
+    "final_feature_family": "texture"
+  },
+  "deep": {
+    "spatial_dims": 3,
+    "input_shape": [96, 96, 96],
+    "roi_margin": 0,
+    "mask_outside_roi": false,
+    "epochs": 50,
+    "batch_size": 4,
+    "optimizer": "adamw",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "momentum": 0.9,
+    "gradient_clip": 1.0,
+    "dropout": 0.0,
+    "drop_path": 0.0,
+    "resnet_width_factor": 1.0,
+    "swin_embed_dim": 24,
+    "swin_window": [7, 7, 7],
+    "swin_patch": [2, 2, 2],
+    "swin_depths": [2, 2, 2, 2],
+    "swin_heads": [3, 6, 12, 24],
+    "swin_mlp_ratio": 4.0,
+    "use_checkpoint": true,
+    "deterministic": true,
+    "device": "auto"
+  },
+  "evaluation": {
+    "threshold_rule": "youden",
+    "fixed_threshold": 0.5,
+    "alpha": 0.05,
+    "dca_thresholds": [0.01, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 0.99],
+    "shap_enabled": true,
+    "shap_background": 50,
+    "shap_samples": 200
+  },
+  "matlab": {
+    "executable": "auto",
+    "startup_timeout_seconds": 240,
+    "request_timeout_seconds": 7200
+  },
+  "execution": {
+    "models": ["radiomics", "habitat", "resnet34", "swin"],
+    "enforce_confirmed_protocol": true,
+    "n_jobs": 1,
+    "torch_threads": 4,
+    "model_cache_size": 64,
+    "save_outer_models": false,
+    "matlab_statistics": true,
+    "save_external_maps": true
+  }
+}
